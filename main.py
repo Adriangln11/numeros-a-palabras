@@ -38,7 +38,7 @@ class MyRequestHandler(BaseHTTPRequestHandler):
             </head>
             <body>
                 <main class="container text-center ">
-                    <h1>Conversión de número a texto</h1>
+                    <h1 class="my-5">Conversión de número a texto</h1>
                     <form method="POST" action="/">
                         <label for="number">Ingresa un número:</label>
                         <input type="number" name="number" id="number">
@@ -50,20 +50,16 @@ class MyRequestHandler(BaseHTTPRequestHandler):
             </body>
             </html>
             """
-
-            # Envía la respuesta al cliente
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
             self.end_headers()
             self.wfile.write(bytes(response, 'utf-8'))
 
-# Configura el servidor
 def run(server_class=HTTPServer, handler_class=MyRequestHandler, port=8000):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
-    print('Servidor en ejecución en el puerto', port)
+    print('Server listening on port: ', port)
     httpd.serve_forever()
 
-# Ejecuta el servidor
 if __name__ == '__main__':
     run()
